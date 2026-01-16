@@ -1,21 +1,17 @@
 # database.py
 from sqlalchemy import create_engine
-from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
-
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, Session
 from model.Chats import Base
 
 DATABASE_URL = "sqlite:///./chatapp.db"
 
-engine = create_async_engine(
+engine = create_engine(
     DATABASE_URL,
-    echo=True,
-    pool_pre_ping=True,
+    connect_args={"check_same_thread": False},
+    echo=True
 )
 
-SessionLocal = async_sessionmaker(
-    class_=AsyncSession,
-    expire_on_commit=False,
+SessionLocal = sessionmaker(
     autocommit=False,
     autoflush=False,
     bind=engine
