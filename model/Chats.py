@@ -5,6 +5,7 @@ from sqlalchemy.sql import func
 
 Base = declarative_base()
 
+
 class Chat(Base):
     __tablename__ = "chats"
 
@@ -22,6 +23,7 @@ class Chat(Base):
         cascade="all, delete-orphan",
         lazy="selectin",
     )
+
 
 class Message(Base):
     __tablename__ = "messages"

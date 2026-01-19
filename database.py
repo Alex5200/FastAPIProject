@@ -1,4 +1,3 @@
-# database.py
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
 from model.Chats import Base
@@ -6,16 +5,11 @@ from model.Chats import Base
 DATABASE_URL = "sqlite:///./chatapp.db"
 
 engine = create_engine(
-    DATABASE_URL,
-    connect_args={"check_same_thread": False},
-    echo=True
+    DATABASE_URL, connect_args={"check_same_thread": False}, echo=True
 )
 
-SessionLocal = sessionmaker(
-    autocommit=False,
-    autoflush=False,
-    bind=engine
-)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
 
 def get_db():
     db = SessionLocal()
@@ -23,6 +17,7 @@ def get_db():
         yield db
     finally:
         db.close()
+
 
 def create_tables():
     Base.metadata.create_all(bind=engine)

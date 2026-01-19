@@ -9,7 +9,7 @@ class ChatCreate(BaseModel):
 
 
 class MessageCreate(BaseModel):
-    chat_id: int  # FK int ✓
+    chat_id: int
     text: str = Field(..., min_length=1, max_length=500)
 
 
