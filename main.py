@@ -38,6 +38,10 @@ def startup():
     create_tables()
 
 
+@app.get("/")
+def defaultroute():
+    return {"server alive"}
+
 @app.post(
     "/chats",
     tags=["Chats "],
